@@ -77,6 +77,10 @@ footer {visibility: hidden !important;}
 /* 右上のツールバー全体 */
 header [data-testid="stToolbar"] {display: none !important;}
 
+/* 背景色をやさしい色に */
+[data-testid="stAppViewContainer"] {
+    background-color: #FFF7D6;
+}
 /* 右下の管理バー（複数パターン） */
 [data-testid="stAppStatusWidget"] {display: none !important;}
 [data-testid="stStatusWidget"] {display: none !important;}
