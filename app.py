@@ -69,20 +69,22 @@ st.markdown("""
 <style>
 
 /* 右上メニュー（…） */
-#MainMenu {visibility: hidden;}
+#MainMenu {visibility: hidden !important;}
 
 /* フッター */
-footer {visibility: hidden;}
+footer {visibility: hidden !important;}
 
-/* 右上のツールバー全体（Share / ⭐ / コード / 編集） */
+/* 右上のツールバー全体 */
 header [data-testid="stToolbar"] {display: none !important;}
 
-/* 右下の「アプリの管理」バー（最新UI） */
+/* 右下の管理バー（複数パターン） */
 [data-testid="stAppStatusWidget"] {display: none !important;}
+[data-testid="stStatusWidget"] {display: none !important;}
+[data-testid="stStatusContainer"] {display: none !important;}
+section[data-testid="stSidebar"] + div {display: none !important;}
 
 </style>
 """, unsafe_allow_html=True)
-
 st.title("稲城市公民館サークルおすすめAI")
 st.write("サークル数:", len(circles))
 st.write("やりたいことを入力すると、おすすめのサークルを教えるよ")
