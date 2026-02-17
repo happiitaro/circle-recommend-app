@@ -68,25 +68,13 @@ h3 {
 st.markdown("""
 <style>
 
-/* 右上のメニュー（…） */
+/* 右上メニュー（…） */
 #MainMenu {visibility: hidden;}
 
-/* フッター（Made with Streamlit） */
+/* フッター */
 footer {visibility: hidden;}
 
-/* Share ボタン */
-.stAppDeployButton {display: none !important;}
-
-/* 星マーク（お気に入り） */
-button[title="Add to favorites"] {display: none !important;}
-
-/* コード表示ボタン（View source） */
-button[title="View source"] {display: none !important;}
-
-/* 編集ボタン（Edit source） */
-button[title="Edit source"] {display: none !important;}
-
-/* 新しい UI で追加された右上のボタン類をまとめて非表示 */
+/* 右上のツールバー全体（Share / ⭐ / コード / 編集） */
 header [data-testid="stToolbar"] {display: none !important;}
 
 /* 右下の「アプリの管理」バー（最新UI） */
