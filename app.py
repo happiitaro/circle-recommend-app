@@ -67,23 +67,28 @@ h3 {
 
 st.markdown("""
 <style>
-/* 右上のメニュー（…）を非表示 */
+
+/* 右上のメニュー（…） */
 #MainMenu {visibility: hidden;}
 
-/* 右上のシェアボタンを非表示 */
-.stAppDeployButton {visibility: hidden;}
-
-/* 右上の星マーク（お気に入り）を非表示 */
-button[title="Add to favorites"] {visibility: hidden;}
-
-/* 右上のコード表示ボタンを非表示 */
-button[title="View source"] {visibility: hidden;}
-
-/* 右上の編集ボタンを非表示 */
-button[title="Edit source"] {visibility: hidden;}
-
-/* フッターも非表示（必要なら） */
+/* フッター（Made with Streamlit） */
 footer {visibility: hidden;}
+
+/* Share ボタン */
+.stAppDeployButton {display: none !important;}
+
+/* 星マーク（お気に入り） */
+button[title="Add to favorites"] {display: none !important;}
+
+/* コード表示ボタン（View source） */
+button[title="View source"] {display: none !important;}
+
+/* 編集ボタン（Edit source） */
+button[title="Edit source"] {display: none !important;}
+
+/* 新しい UI で追加された右上のボタン類をまとめて非表示 */
+header [data-testid="stToolbar"] {display: none !important;}
+
 </style>
 """, unsafe_allow_html=True)
 
