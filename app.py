@@ -83,15 +83,12 @@ header [data-testid="stToolbar"] {display: none !important;}
 [data-testid="stStatusContainer"] {display: none !important;}
 section[data-testid="stSidebar"] + div {display: none !important;}
 
-</style>
-st.markdown("""
-<style>
 /* 背景色をやさしい色に */
 [data-testid="stAppViewContainer"] {
     background-color: #FFF7D6;
 }
+
 </style>
-""", unsafe_allow_html=True)
 """, unsafe_allow_html=True)
 st.title("稲城市公民館サークルおすすめAI")
 st.write("サークル数:", len(circles))
