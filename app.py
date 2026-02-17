@@ -3,9 +3,6 @@ from sentence_transformers import SentenceTransformer, util
 import json
 import numpy as np
 
-# モデル読み込み
-model = SentenceTransformer("intfloat/multilingual-e5-large")
-
 # サークルデータ読み込み
 with open("circles.json", "r", encoding="utf-8") as f:
     circles = json.load(f)
