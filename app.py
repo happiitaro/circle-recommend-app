@@ -65,6 +65,15 @@ h3 {
 </style>
 """, unsafe_allow_html=True)
 
+st.markdown("""
+<style>
+/* 右上のメニューを非表示 */
+#MainMenu {visibility: hidden;}
+/* フッターも非表示（必要なら） */
+footer {visibility: hidden;}
+</style>
+""", unsafe_allow_html=True)
+
 st.title("稲城市公民館サークルおすすめAI")
 st.write("サークル数:", len(circles))
 st.write("やりたいことを入力すると、おすすめのサークルを教えるよ")
