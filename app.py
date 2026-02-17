@@ -82,9 +82,9 @@ header [data-testid="stToolbar"] {display: none !important;}
 [data-testid="stStatusWidget"] {display: none !important;}
 [data-testid="stStatusContainer"] {display: none !important;}
 section[data-testid="stSidebar"] + div {display: none !important;}
+
 </style>
 """, unsafe_allow_html=True)
-
 st.title("稲城市公民館サークルおすすめAI")
 st.write("サークル数:", len(circles))
 st.write("やりたいことを入力すると、おすすめのサークルを教えるよ")
