@@ -1,18 +1,16 @@
-import streamlit as st
 from sentence_transformers import SentenceTransformer, util
-import json
-import numpy as np
 
-# サークルデータ読み込み
-with open("circles.json", "r", encoding="utf-8") as f:
-    circles = json.load(f)
+# クエリ用の軽量モデルを読み込む（これはOK）
+model = SentenceTransformer("intfloat/multilingual-e5-large")
 
-# 事前計算したベクトル読み込み
+# 事前計算済みのベクトルを読み込む
 with open("circle_embeddings.json", "r", encoding="utf-8") as f:
     circle_embs = json.load(f)
-    circle_embs = np.array(circle_embs, dtype=np.float32)
-# numpy に変換（高速化）
 circle_embs = np.array(circle_embs)
+
+# circles.json も読み込む
+with open("circles.json", "r", encoding="utf-8") as f:
+    circles = json.load(f)
 
 st.markdown("""
 <style>
