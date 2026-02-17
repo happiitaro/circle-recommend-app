@@ -89,8 +89,8 @@ button[title="Edit source"] {display: none !important;}
 /* 新しい UI で追加された右上のボタン類をまとめて非表示 */
 header [data-testid="stToolbar"] {display: none !important;}
 
-/* 右下の「アプリの管理」バーを非表示 */
-[data-testid="stStatusWidget"] {display: none !important;}
+/* 右下の「アプリの管理」バー（最新UI） */
+[data-testid="stAppStatusWidget"] {display: none !important;}
 
 </style>
 """, unsafe_allow_html=True)
