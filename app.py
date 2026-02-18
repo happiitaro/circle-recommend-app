@@ -148,7 +148,7 @@ if submitted:
         for score, c in results[:5]:
             if len(results) == 0:
                 st.info("該当するサークルが見つかりませんでした")
-            else
+            else:
                 st.markdown(
                     f"""
                     <div style="
