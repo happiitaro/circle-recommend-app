@@ -131,7 +131,7 @@ if submitted:
         st.warning("キーワードを入力してね")
     else:
         # ここに検索処理を書く
-        query = "query: " + user_input
+        #query = "query: " + user_input
         query_emb = model.encode(query)
 
         # コサイン類似度を一括計算（高速）
