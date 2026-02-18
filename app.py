@@ -6,6 +6,19 @@ import numpy as np
 # モデル読み込み
 model = SentenceTransformer("intfloat/multilingual-e5-large")
 
+category_texts = {
+    "音楽": "音楽、楽器、演奏、歌、バンド、音を出す活動",
+    "スポーツ": "運動、スポーツ、体を動かす、競技、試合",
+    "アート": "絵、デザイン、創作、アート、工作、クラフト",
+    "文化": "文化、歴史、学習、研究、読書、知識",
+    "手芸": "手作り、編み物、裁縫、クラフト、手芸",
+}
+
+category_embeddings = {
+    cat: model.encode(text)
+    for cat, text in category_texts.items()
+}
+
 # サークルデータ読み込み
 with open("circles.json", "r", encoding="utf-8") as f:
     circles = json.load(f)
@@ -103,6 +116,50 @@ def get_icon(tags):
     if "アート" in tags:
         return "🎨"
     return "🌟"
+
+def detect_category(query):
+    query_vec = model.encode(query)
+
+    best_cat = None
+    best_score = -1
+
+    for cat, cat_vec in category_embeddings.items():
+        score = np.dot(query_vec, cat_vec) / (
+            np.linalg.norm(query_vec) * np.linalg.norm(cat_vec)
+        )
+        if score > best_score:
+            best_score = score
+            best_cat = cat
+
+    return best_cat, best_score
+
+def compute_score(query, query_embedding, circle, detected_category):
+    # ベースのコサイン類似度
+    score = float(np.dot(query_embedding, circle["embedding"]) /
+                  (np.linalg.norm(query_embedding) * np.linalg.norm(circle["embedding"])))
+
+    # --- カテゴリ補正 ---
+    # サークルの tags にカテゴリが含まれていたら補正
+    if detected_category in circle["tags"]:
+        score += 0.25  # ← 調整可能
+
+    return score
+
+def search_circles(query):
+    query_embedding = model.encode(query)
+
+    # カテゴリ自動判定
+    detected_category, cat_score = detect_category(query)
+
+    scored_results = []
+    for circle in circles:
+        score = compute_score(query, query_embedding, circle, detected_category)
+        scored_results.append((score, circle))
+
+    scored_results.sort(reverse=True, key=lambda x: x[0])
+
+    return [c for _, c in scored_results[:5]]
+
 st.markdown("""
 <style>
 div.stButton > button:first-child {
@@ -167,3 +224,12 @@ if submitted:
                     unsafe_allow_html=True
                 )
 
+with st.form("search_form"):
+    query = st.text_input("キーワードを入力してね")
+    submitted = st.form_submit_button("検索")
+
+if submitted:
+    results = search_circles(query)
+    for circle in results:
+        st.write(circle["name"])
+        st.write(circle["description"])
