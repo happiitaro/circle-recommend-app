@@ -146,31 +146,24 @@ if submitted:
 
         st.subheader("おすすめのサークル")
         for score, c in results[:5]:
-            st.markdown(
-                f"""
-                <div style="
-                    background-color: #fff8dc;
-                    padding: 15px;
-                    border-radius: 12px;
-                    margin-bottom: 15px;
-                    border: 2px solid #f4d06f;
-                    box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
-                ">
-                    <h3 style="color:#d17b0f;">{get_icon(c['tags'])} {c['name']}</h3>
-                    <p style="margin:0 0 8px 0; color:#444;">{c['description']}</p>
-                    <p style="font-size:14px; color:#888;">スコア: {score:.3f}</p>
-                </div>
-                """,
-                unsafe_allow_html=True
-            )
-
             if len(results) == 0:
                 st.info("該当するサークルが見つかりませんでした")
-            else:
-                for score, c in results[:5]:
-                    st.markdown(f"""
-                    <div class="result-card">
-                        <div class="result-title">🎨 {circle(C['name'])}</div>
-                        <div>{circle(C['description'])}</div>
+            else
+                st.markdown(
+                    f"""
+                    <div style="
+                        background-color: #fff8dc;
+                        padding: 15px;
+                        border-radius: 12px;
+                        margin-bottom: 15px;
+                        border: 2px solid #f4d06f;
+                        box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+                    ">
+                        <h3 style="color:#d17b0f;">{get_icon(c['tags'])} {c['name']}</h3>
+                        <p style="margin:0 0 8px 0; color:#444;">{c['description']}</p>
+                        <p style="font-size:14px; color:#888;">スコア: {score:.3f}</p>
                     </div>
-                    """, unsafe_allow_html=True)
+                   """,
+                    unsafe_allow_html=True
+                )
+
