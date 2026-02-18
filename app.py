@@ -122,7 +122,7 @@ div.stButton > button:first-child:hover {
 
 # --- 検索フォーム ---
 with st.form("search_form"):
-#    query = st.text_input("キーワードを入力してね")
+    query = st.text_input
     submitted = st.form_submit_button("検索")
 
 # --- 検索実行 ---
