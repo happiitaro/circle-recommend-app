@@ -122,25 +122,8 @@ div.stButton > button:first-child:hover {
 
 # --- 検索フォーム ---
 with st.form("search_form"):
-    query = st.text_input("キーワードを入力してね。Enterキーで検索できますよ。")
+    query = st.text_input("キーワードを入力してね")
     submitted = st.form_submit_button("検索")
-
-st.markdown("""
-<style>
-/* フォームの Enter 表示を日本語に変更 */
-div[data-testid="stTextInput"] input::placeholder {
-    color: #999999;
-    opacity: 1; /* Safari対策 */
-}
-
-/* Streamlit が自動で付ける説明文を日本語に置き換える */
-div[data-testid="stTextInput"] > label > div:nth-child(2) {
-    visibility: hidden; /* 元の英語を隠す */
-    height: 0px;
-}
-
-</style>
-""", unsafe_allow_html=True)
 
 # --- 検索実行 ---
 if submitted:
