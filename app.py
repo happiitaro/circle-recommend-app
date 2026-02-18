@@ -167,10 +167,10 @@ if submitted:
             if len(results) == 0:
                 st.info("該当するサークルが見つかりませんでした")
             else:
-                for circle in results:
+                for score, c in results[:5]:
                     st.markdown(f"""
                     <div class="result-card">
-                        <div class="result-title">🎨 {circle['name']}</div>
-                        <div>{circle['description']}</div>
+                        <div class="result-title">🎨 {circle(C['name'])}</div>
+                        <div>{circle(C['description'])}</div>
                     </div>
                     """, unsafe_allow_html=True)
