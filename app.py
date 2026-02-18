@@ -79,7 +79,7 @@ header [data-testid="stToolbar"] {display: none !important;}
 
 /* 背景色をやさしい色に */
 [data-testid="stAppViewContainer"] {
-    background-color: #FFF7D6;
+    background-color: #FFFDF7;
 }
 /* 右下の管理バー（複数パターン） */
 [data-testid="stAppStatusWidget"] {display: none !important;}
