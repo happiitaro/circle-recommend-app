@@ -120,41 +120,57 @@ div.stButton > button:first-child:hover {
 </style>
 """, unsafe_allow_html=True)
 
-if st.button("検索"):
-    query = "query: " + user_input
-    query_emb = model.encode(query)
+# --- 検索フォーム ---
+with st.form("search_form"):
+    query = st.text_input("キーワードを入力してね")
+    submitted = st.form_submit_button("検索")
 
-    # コサイン類似度を一括計算（高速）
-    scores = util.cos_sim(query_emb, circle_embs)[0].tolist()
+# --- 検索実行 ---
+if submitted:
+    if query.strip() == "":
+        st.warning("キーワードを入力してね")
+    else:
+        # ここに検索処理を書く
+        query = "query: " + user_input
+        query_emb = model.encode(query)
 
-    # スコアとサークルをまとめてソート
-    results = sorted(
-        zip(scores, circles),
-        key=lambda x: x[0],
-        reverse=True
-    )
+        # コサイン類似度を一括計算（高速）
+        scores = util.cos_sim(query_emb, circle_embs)[0].tolist()
 
-    st.subheader("おすすめのサークル")
-#    for score, c in results[:5]:
-#        st.write(f"### {c['name']}")
-#        st.write(c["description"])
-#        st.write(f"スコア: {score:.3f}")
-#        st.write("---")
-    for score, c in results[:5]:
-        st.markdown(
-            f"""
-            <div style="
-                background-color: #fff8dc;
-                padding: 15px;
-                border-radius: 12px;
-                margin-bottom: 15px;
-                border: 2px solid #f4d06f;
-                box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
-            ">
-                <h3 style="color:#d17b0f;">{get_icon(c['tags'])} {c['name']}</h3>
-                <p style="margin:0 0 8px 0; color:#444;">{c['description']}</p>
-                <p style="font-size:14px; color:#888;">スコア: {score:.3f}</p>
-            </div>
-            """,
-            unsafe_allow_html=True
+        # スコアとサークルをまとめてソート
+        results = sorted(
+            zip(scores, circles),
+            key=lambda x: x[0],
+            reverse=True
         )
+
+        st.subheader("おすすめのサークル")
+        for score, c in results[:5]:
+            st.markdown(
+                f"""
+                <div style="
+                    background-color: #fff8dc;
+                    padding: 15px;
+                    border-radius: 12px;
+                    margin-bottom: 15px;
+                    border: 2px solid #f4d06f;
+                    box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+                ">
+                    <h3 style="color:#d17b0f;">{get_icon(c['tags'])} {c['name']}</h3>
+                    <p style="margin:0 0 8px 0; color:#444;">{c['description']}</p>
+                    <p style="font-size:14px; color:#888;">スコア: {score:.3f}</p>
+                </div>
+                """,
+                unsafe_allow_html=True
+            )
+
+            if len(results) == 0:
+                st.info("該当するサークルが見つかりませんでした")
+            else:
+                for circle in results:
+                    st.markdown(f"""
+                    <div class="result-card">
+                        <div class="result-title">🎨 {circle['name']}</div>
+                        <div>{circle['description']}</div>
+                    </div>
+                    """, unsafe_allow_html=True)
