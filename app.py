@@ -93,9 +93,6 @@ st.title("稲城市公民館サークルおすすめAI")
 st.write("サークル数:", len(circles))
 st.write("やりたいことを入力すると、おすすめのサークルを教えるよ")
 
-names = [c["name"] for c in circles]
-st.write("サークル名一覧:", names)
-
 #user_input = st.text_input("やりたいことを入力してね")
 st.caption("例：サッカーがしたい、絵を描きたい、友だちを作りたい など")
 def get_icon(tags):
